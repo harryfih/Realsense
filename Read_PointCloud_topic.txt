@@ -6,3 +6,5 @@
     --> Data recevied.
 --> Upload echo2.py to /opt/ros/foxy/lib/python3.8/site-packages/ros2topic/verb
   --> echo2.py is copy from echo.py and show first data of a topic
+  --> python3 echo2.py
+  --> check output data
