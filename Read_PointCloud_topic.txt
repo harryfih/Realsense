@@ -1,9 +1,11 @@
 --> Start realsense camera node with point cloud
+  --> source /opt/ros/foxy/setup.bash
   --> ros2 run realsense2_camera realsense2_camera_node --ros-args -p pointcloud.enable:=true
   --> Open another terminal
-  --> ros2 topic list
-    --> ros2 topic echo /depth/color/points
-    --> Data recevied.
+    --> source /opt/ros/foxy/setup.bash
+    --> ros2 topic list
+      --> ros2 topic echo /depth/color/points
+      --> Data recevied.
 --> Upload echo2.py to /opt/ros/foxy/lib/python3.8/site-packages/ros2topic/verb
   --> echo2.py is copy from echo.py and show first data of a topic
   --> source /opt/ros/foxy/setup.bash
