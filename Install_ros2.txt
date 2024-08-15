@@ -1,0 +1,62 @@
+Intel RealSense + Jetson Nano  + ROS2 installation
+--> https://github.com/IntelRealSense/realsense-ros/tree/ros2-development?tab=readme-ov-file#installation-on-ubuntu
+--> Use docker container with Ubntu 20.04
+    --> https://forums.developer.nvidia.com/t/cuda-enabled-ubuntu-20-04-docker-images-for-jetson/186418
+--> xhost +
+--> export DISPLAY=:0
+--> docker run --privileged --gpus=all -it --name ros_test --device=/dev -v /home/harry/docker_shared:/docker_shared --network=host -v /home/harry/docker_shared:/docker_shared -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY timongentzsch/l4t-ubuntu20-pytorch
+--> apt-get update; apt-get install vim -y
+--> vi ~/.bashrc, add "alias sudo="
+--> source ~/.bashrc
+--> Step 1: Install the ROS2 distribution
+    --> Choose ROS2 Foxy
+    --> Follow install steps
+--> Step 2: Install latest Intel® RealSense™ SDK 2.0
+    --> Choose Option 1 --> Jetson users
+    --> In step 1, Register the server's public key:
+        --> add --keyserver-options http-proxy=http://10.58.70.94:8080 after keyserver option
+        --> sudo apt-key adv --keyserver keyserver.ubuntu.com --keyserver-options http-proxy=http://10.58.70.94:8080 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --keyserver-options http-proxy=http://10.58.70.94:8080 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+    --> Follow rest steps
+    --> Test : realsense-viewer
+        --> If rgb camera shows "No frames received", change color to YUYV in Availables streams.
+--> Step 3: Install ROS Wrapper for Intel® RealSense™ cameras
+    --> Choose Option 1
+        --> in Step 2 : replace <ROS_DISTRO> to Foxy
+        --> sudo apt install ros-foxy-realsense2-*
+--> Test ros2 + realsense:
+    --> Setup ssh server : https://github.com/harryfih/ubuntu_install/blob/6f460952a6ac7fb1581d08c6bc4c950f1eb74200/openssh
+    --> Open ssh terminal 1
+        --> export DISPLAY=:0
+        --> source /opt/ros/foxy/setup.bash
+        --> ros2 run realsense2_camera realsense2_camera_node --ros-args -p enable_color:=true -p spatial_filter.enable:=true -p temporal_filter.enable:=true
+    --> Open ssh terminal 2
+        --> source /opt/ros/foxy/setup.bash
+        --> ros2 topic list
+        --> 
+            /accel/imu_info
+            /accel/metadata
+            /accel/sample
+            /color/camera_info
+            /color/image_raw
+            /color/metadata
+            /depth/camera_info
+            /depth/image_rect_raw
+            /depth/metadata
+            /extrinsics/depth_to_accel
+            /extrinsics/depth_to_color
+            /extrinsics/depth_to_depth
+            /extrinsics/depth_to_gyro
+            /extrinsics/depth_to_infra1
+            /gyro/imu_info
+            /gyro/metadata
+            /gyro/sample
+            /imu
+            /infra1/camera_info
+            /infra1/image_rect_raw
+            /infra1/metadata
+            /parameter_events
+            /rosout
+            /tf_static
+
+        --> ros2 topic echo /depth/image_rect_raw
+        
