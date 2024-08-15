@@ -1,0 +1,19 @@
+--> Related web pages:
+    --> https://medium.com/@kabilankb2003/nvidia-jetson-nano-with-intel-realsense-depth-camera-using-ros2-humble-c5926566a4d8
+    --> https://blog.cavedu.com/2020/02/11/jetson-nano-realsensed435-setup/
+    --> https://github.com/Razany98/ROS-2-installation-on-Jetson-Nano?tab=readme-ov-file
+    --> https://docs.ros.org/en/dashing/Installation/Ubuntu-Install-Binary.html
+
+--> Install librealsense
+    --> https://blog.cavedu.com/2020/02/11/jetson-nano-realsensed435-setup/
+    --> realsense-viewer (or add DISPLAY=:0 to display locally)
+    --> cd ~/librealsense/wrappers/python/examples/
+    --> export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.8/pyrealsense2
+    --> modify python-tutorial-1-depth.py @ line 14
+        --> Change pipeline.start() to:
+            config = rs.config()
+            config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+            config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+            pipeline.start(config)
+
+    --> python3.8 python-tutorial-1-depth.py
