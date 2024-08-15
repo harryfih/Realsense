@@ -21,15 +21,8 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from ros2cli.node.strategy import NodeStrategy
-from ros2topic.api import add_qos_arguments_to_argument_parser
 from ros2topic.api import get_msg_class
 from ros2topic.api import qos_profile_from_short_keys
-from ros2topic.api import TopicNameCompleter
-from ros2topic.api import unsigned_int
-from ros2topic.verb import VerbExtension
-from rosidl_runtime_py import message_to_csv
-from rosidl_runtime_py import message_to_yaml
-from rosidl_runtime_py.utilities import get_message
 
 MsgType = TypeVar('MsgType')
 topic_name = "/depth/color/points"
@@ -64,10 +57,11 @@ def subscriber(
 
 def subscriber_cb():
     def cb(msg):
-        print(msg, "\n------\n")
-        # print(len(msg.data))
-        exit(0)
+        # print(msg, "\n------\n")
+        print(len(msg.data))
+        # exit(0)
     return cb
 
 if __name__ == '__main__':
     main()
+    
