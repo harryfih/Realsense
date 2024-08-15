@@ -11,3 +11,6 @@
   --> source /opt/ros/foxy/setup.bash
   --> python3 echo2.py
   --> check output data
+
+--> Refer https://medium.com/@tonyjacob_/pointcloud2-message-explained-853bd9907743
+  --> Parse message
