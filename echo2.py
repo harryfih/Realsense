@@ -57,9 +57,9 @@ def subscriber(
 
 def subscriber_cb():
     def cb(msg):
-        # print(msg, "\n------\n")
-        print(len(msg.data))
-        # exit(0)
+        print(msg, "\n------\n")
+        # print(len(msg.data))
+        exit(0)
     return cb
 
 if __name__ == '__main__':
