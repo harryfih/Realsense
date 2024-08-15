@@ -4,3 +4,5 @@
   --> ros2 topic list
     --> ros2 topic echo /depth/color/points
     --> Data recevied.
+--> Upload echo2.py to /opt/ros/foxy/lib/python3.8/site-packages/ros2topic/verb
+  --> echo2.py is copy from echo.py and show first data of a topic
