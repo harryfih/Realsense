@@ -1,1 +1,6 @@
-
+--> Start realsense camera node with point cloud
+  --> ros2 run realsense2_camera realsense2_camera_node --ros-args -p pointcloud.enable:=true
+  --> Open another terminal
+  --> ros2 topic list
+    --> ros2 topic echo /depth/color/points
+    --> Data recevied.
