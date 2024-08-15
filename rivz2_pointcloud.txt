@@ -1,0 +1,23 @@
+--> Test Rviz2 to display point cloud
+    --> ros2 launch realsense2_camera rs_launch.py
+    --> Run ros2 run rviz2 rviz2
+        --> Add rgb topic and image
+        --> See rgb camera correctly
+    --> No point cloud topic
+    --> Refer https://dev.intelrealsense.com/docs/ros2-pointcloud-examples
+        --> ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true
+        --> Run ros2 run rviz2 rviz2
+        --> Add point cloud topic --> OK
+        --> Add rgb topic and image
+    --> Update launch.py
+        --> Save rviz2 config to {rviz_config_file} with added point cloud and rgb image topics
+        --> cd /opt/ros/foxy/share/realsense2_camera/launch
+        --> copy launch.py to launch2.py
+        --> Add new launch_ros.actions.Node :
+            --> launch_ros.actions.Node(
+                package='rviz2', executable='rviz2', output='screen',
+                arguments=['--display-config', '{rviz_config_file}']
+                ),
+    --> ros2 launch realsense2_camera rs_launch2.py pointcloud.enable:=true
+        --> rviz2 will start automatically
+        --> rviz2 will capture an rgb image and display point clound
